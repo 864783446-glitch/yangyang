@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="overflow-hidden">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>李粤湘 | 个人作品集简历 · AIGC 影视制作师</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#3D81E3',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    /* 1920x1080 大屏基准字号 (放大至 1.5 - 2 倍) */
+    html {
+      font-size: 24px;
+      background-color: #0c0c0c;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background-color: #0c0c0c;
+      color: #ffffff;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    ::selection {
+      background-color: rgba(61, 129, 227, 0.4);
+      color: #ffffff;
+    }
+
+    /* 彻底去除白色线框的沉浸熏黑毛玻璃质感 */
+    .liquid-glass-borderless {
+      background: rgba(15, 15, 20, 0.62);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+      border: none !important;
+      outline: none !important;
+    }
+
+    /* 全屏页面切换容器 */
+    #page-slider {
+      transition: transform 0.85s cubic-bezier(0.25, 1, 0.35, 1);
+      will-change: transform;
+    }
+
+    .page-slide {
+      width: 100vw;
+      height: 100vh;
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    /* 右侧页面指示点激活态 */
+    .nav-dot.active {
+      height: 36px;
+      background-color: #ffffff;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.8);
+    }
+  </style>
+</head>
+
+<body class="relative w-screen h-screen overflow-hidden bg-[#0c0c0c] text-white select-none">
+
+  <!-- ==================== 1. 全屏沉浸高亮背景视频 (已提亮，无缝循环) ==================== -->
+  <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+    <video id="globalBgVideo" autoPlay loop muted playsInline
+      class="w-full h-full object-cover opacity-85 brightness-105 contrast-105 transition-opacity duration-700"
+      src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_064122_c4750c0e-7476-4b44-94a2-a85a65c63bf2.mp4">
+    </video>
+    <!-- 轻柔暗调保护层，确保文字大字清晰通透 -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0c0c0c]/40 via-black/20 to-[#0c0c0c]/85"></div>
+    <div class="absolute inset-0 bg-black/15"></div>
+  </div>
+
+  <!-- ==================== 2. 常驻顶部无边框导航栏 ==================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 max-w-[1760px] mx-auto px-10 pt-7">
+    <nav class="flex items-center justify-between py-4 px-8 rounded-full liquid-glass-borderless shadow-2xl">
+      <a href="javascript:void(0)" onclick="goToPage(0)" class="group flex items-center gap-4">
+        <svg class="w-10 h-10 text-white transition-transform group-hover:rotate-90 duration-500 drop-shadow-md" viewBox="0 0 256 256" fill="currentColor">
+          <path d="M 0 128 C 70.692 128 128 185.308 128 256 L 64 256 C 64 220.654 35.346 192 0 192 Z M 256 192 C 220.654 192 192 220.654 192 256 L 128 256 C 128 185.308 185.308 128 256 128 Z M 128 0 C 128 70.692 70.692 128 0 128 L 0 64 C 35.346 64 64 35.346 64 0 Z M 192 0 C 192 35.346 220.654 64 256 64 L 256 128 C 185.308 128 128 70.692 128 0 Z" />
+        </svg>
+        <div class="leading-none">
+          <span class="font-black text-xl tracking-tight text-white block">李粤湘</span>
+          <span class="text-xs text-white/60 tracking-widest uppercase font-mono mt-0.5 block">AIGC Filmmaker</span>
+        </div>
+      </a>
+
+      <!-- 快速滚动切屏链接 -->
+      <div class="hidden lg:flex items-center gap-12 text-base font-semibold text-white/80">
+        <a href="javascript:void(0)" onclick="goToPage(0)" class="hover:text-white transition-colors">首页</a>
+        <a href="javascript:void(0)" onclick="goToPage(1)" class="hover:text-white transition-colors">精选作品</a>
+        <a href="javascript:void(0)" onclick="goToPage(2)" class="hover:text-white transition-colors">工作流程</a>
+        <a href="javascript:void(0)" onclick="goToPage(3)" class="hover:text-white transition-colors">实战经历</a>
+        <a href="javascript:void(0)" onclick="goToPage(4)" class="hover:text-white transition-colors">即刻联络</a>
+      </div>
+
+      <!-- 右侧操作组 -->
+      <div class="flex items-center gap-4">
+        <label class="cursor-pointer hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-semibold transition-all shadow-md" title="上传本地视频替换全屏背景（自动永久保存）">
+          <i data-lucide="video" class="w-5 h-5 text-cyan-300"></i>
+          <span id="bgStatusText">更换全屏背景</span>
+          <input type="file" accept="video/*" class="hidden" onchange="handleBgVideoUpload(event)">
+        </label>
+
+        <a href="javascript:void(0)" onclick="goToPage(4)" class="group inline-flex items-center justify-center gap-2.5 rounded-full bg-white text-black font-extrabold text-sm px-6 py-2.5 transition-all hover:bg-white/90 active:scale-[0.98] shadow-xl">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>即刻联络</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== 3. 右侧整屏滑轮导航指示器 ==================== -->
+  <aside class="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-4">
+    <button onclick="goToPage(0)" class="nav-dot w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-white transition-all duration-300 active" title="第 1 屏：首页"></button>
+    <button onclick="goToPage(1)" class="nav-dot w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-white transition-all duration-300" title="第 2 屏：作品集"></button>
+    <button onclick="goToPage(2)" class="nav-dot w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-white transition-all duration-300" title="第 3 屏：工作流"></button>
+    <button onclick="goToPage(3)" class="nav-dot w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-white transition-all duration-300" title="第 4 屏：经历与学历"></button>
+    <button onclick="goToPage(4)" class="nav-dot w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-white transition-all duration-300" title="第 5 屏：联络合作"></button>
+  </aside>
+
+  <!-- ==================== 4. 主滑块容器 (Page Slider) ==================== -->
+  <div id="page-slider" class="relative z-10 w-full h-full">
+
+    <!-- ========== PAGE 1: 首页 HERO ========== -->
+    <section class="page-slide px-10 text-center items-center">
+      <div class="max-w-[1760px] mx-auto w-full flex flex-col items-center pt-16">
+        
+        <!-- 身份胶囊 (无白线框) -->
+        <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full liquid-glass-borderless text-sm font-semibold text-white/90 mb-10 shadow-lg">
+          <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
+          <span>AIGC 影视导演 · 视觉资产全链路独立出品</span>
+        </div>
+
+        <!-- 首页核心超大标题：个人作品集简历 (无多余副标题，巨幕极简) -->
+        <h1 class="text-6xl sm:text-8xl md:text-[5.5rem] lg:text-[6.5rem] font-black tracking-tight leading-none text-white drop-shadow-[0_30px_40px_rgba(0,0,0,0.85)] max-w-[1600px]">
+          个人作品集简历
+        </h1>
+
+        <!-- 理念阐述 (大字清晰) -->
+        <p class="mt-10 text-white/90 max-w-4xl text-xl sm:text-2xl leading-relaxed drop-shadow-lg font-normal">
+          独立完成从<strong>剧本创作、人物与场景一致性抽卡、镜头脚本分镜、视频动态生成到配音剪辑</strong>的全流程闭环。用工业化生成式 AI 工具链，带来电影级的视觉张力与商业转化力。
+        </p>
+
+        <!-- 核心按钮：查看作品集 (点击滑至第 2 屏) -->
+        <div class="mt-12 flex flex-col sm:flex-row items-center gap-6">
+          <button onclick="goToPage(1)" class="group inline-flex items-center justify-center gap-3.5 rounded-full bg-white text-black font-black text-lg px-12 py-5 transition-all hover:bg-white/90 active:scale-[0.98] shadow-[0_20px_40px_rgba(0,0,0,0.6)] cursor-pointer">
+            <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+            <span>查看作品集</span>
+            <i data-lucide="chevron-right" class="w-6 h-6 transition-transform group-hover:translate-x-1.5"></i>
+          </button>
+
+          <a href="tel:17352693115" class="rounded-full liquid-glass-borderless text-white text-lg font-bold px-10 py-5 hover:bg-white/20 transition-all inline-flex items-center gap-3 shadow-lg">
+            <i data-lucide="phone" class="w-6 h-6 text-white/80"></i>
+            <span>17352693115</span>
+          </a>
+        </div>
+
+        <!-- 滚轮滑动提示 -->
+        <div class="mt-16 flex items-center gap-2 text-xs text-white/50 uppercase tracking-widest font-mono animate-bounce cursor-pointer" onclick="goToPage(1)">
+          <i data-lucide="mouse" class="w-5 h-5 text-cyan-300"></i>
+          <span>滑动滑轮进入下一页</span>
+          <i data-lucide="chevron-down" class="w-4 h-4"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PAGE 2: 影视作品集展示 (无白边大卡片) ========== -->
+    <section class="page-slide px-10">
+      <div class="max-w-[1760px] mx-auto w-full pt-16">
+        
+        <div class="flex items-end justify-between mb-8">
+          <div>
+            <div class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-cyan-300 mb-1">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+              <span>Video Showcase & Persistent Storage</span>
+            </div>
+            <h2 class="text-4xl sm:text-5xl font-black tracking-tight text-white drop-shadow-md">影视作品集展示</h2>
+          </div>
+
+          <!-- 分类筛选与添加新作品 -->
+          <div class="flex items-center gap-4">
+            <div class="flex p-1.5 liquid-glass-borderless rounded-2xl text-sm">
+              <button onclick="filterWorks('all', this)" class="filter-btn px-6 py-2 rounded-xl font-bold text-white bg-white/20 transition-all">全部</button>
+              <button onclick="filterWorks('ad', this)" class="filter-btn px-6 py-2 rounded-xl font-bold text-white/70 hover:text-white transition-all">AI广告片</button>
+              <button onclick="filterWorks('anime', this)" class="filter-btn px-6 py-2 rounded-xl font-bold text-white/70 hover:text-white transition-all">动漫短片</button>
+            </div>
+
+            <button onclick="triggerNewWorkModal()" class="px-6 py-3 rounded-2xl bg-cyan-500/25 text-cyan-200 hover:bg-cyan-500/40 text-sm font-bold flex items-center gap-2 transition-all shadow-md cursor-pointer">
+              <i data-lucide="plus-circle" class="w-5 h-5"></i>
+              <span>上传新作品</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 6大作品网格 (紧凑无边框，完美容纳于 1080 视口中) -->
+        <div id="works-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- 作品 1：雀巢咖啡 -->
+          <div class="work-card liquid-glass-borderless rounded-3xl p-5 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300" data-category="ad" data-id="work-1">
+            <div>
+              <div class="video-container relative aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-amber-950/80 to-neutral-900 flex flex-col items-center justify-center p-4 text-center">
+                <div class="cover-placeholder text-center">
+                  <span class="text-xs tracking-widest text-amber-300 uppercase font-black">Commercial Film</span>
+                  <h4 class="text-2xl font-extrabold text-white mt-1">让爱，丝滑重启</h4>
+                  <p class="text-xs text-amber-200/80 mt-1">雀巢咖啡品牌概念片</p>
+                </div>
+                <div class="play-overlay absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" onclick="openPlayModal('雀巢咖啡 - 让爱丝滑重启', 'work-1')">
+                  <span class="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+                    <i data-lucide="play" class="w-7 h-7 fill-current"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div class="mt-4 flex items-center justify-between">
+                <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">雀巢咖啡 - 让爱丝滑重启</h3>
+                <span class="text-xs px-3 py-1 rounded-full bg-white/10 font-mono text-cyan-300 font-semibold">AI广告片</span>
+              </div>
+              <p class="text-xs text-white/70 mt-2 line-clamp-2">独立负责分镜、人像一致性抽卡、微表情捕捉与丝滑流体镜头，冷暖调色。</p>
+            </div>
+
+            <div class="mt-4 pt-3 flex items-center justify-between text-xs">
+              <span class="video-status text-xs text-white/50 font-mono">未绑定本地源</span>
+              <label class="cursor-pointer inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors">
+                <i data-lucide="upload" class="w-4 h-4 text-cyan-300"></i>
+                <span>上传视频</span>
+                <input type="file" accept="video/*" class="hidden" onchange="handleWorkVideoUpload(event, 'work-1', '雀巢咖啡 - 让爱丝滑重启')">
+              </label>
+            </div>
+          </div>
+
+          <!-- 作品 2：健力宝 -->
+          <div class="work-card liquid-glass-borderless rounded-3xl p-5 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300" data-category="ad" data-id="work-2">
+            <div>
+              <div class="video-container relative aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-red-950/90 to-neutral-900 flex flex-col items-center justify-center p-4 text-center">
+                <div class="cover-placeholder text-center">
+                  <span class="text-xs tracking-widest text-red-300 uppercase font-black">Sports & Energy</span>
+                  <h4 class="text-2xl font-black italic text-white mt-1">无论什么局 · 尽兴享受</h4>
+                  <p class="text-xs text-red-200/80 mt-1">健力宝 - 双重体验</p>
+                </div>
+                <div class="play-overlay absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" onclick="openPlayModal('健力宝 - 双重体验', 'work-2')">
+                  <span class="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+                    <i data-lucide="play" class="w-7 h-7 fill-current"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div class="mt-4 flex items-center justify-between">
+                <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">健力宝 - 双重体验</h3>
+                <span class="text-xs px-3 py-1 rounded-full bg-white/10 font-mono text-cyan-300 font-semibold">AI广告片</span>
+              </div>
+              <p class="text-xs text-white/70 mt-2 line-clamp-2">热血国漫风格，极限运动分镜抽卡，实现人物多镜头动作的高冲击连贯度。</p>
+            </div>
+
+            <div class="mt-4 pt-3 flex items-center justify-between text-xs">
+              <span class="video-status text-xs text-white/50 font-mono">未绑定本地源</span>
+              <label class="cursor-pointer inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors">
+                <i data-lucide="upload" class="w-4 h-4 text-cyan-300"></i>
+                <span>上传视频</span>
+                <input type="file" accept="video/*" class="hidden" onchange="handleWorkVideoUpload(event, 'work-2', '健力宝 - 双重体验')">
+              </label>
+            </div>
+          </div>
+
+          <!-- 作品 3：夏鸣 -->
+          <div class="work-card liquid-glass-borderless rounded-3xl p-5 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300" data-category="anime" data-id="work-3">
+            <div>
+              <div class="video-container relative aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-sky-950/90 to-emerald-950/90 flex flex-col items-center justify-center p-4 text-center">
+                <div class="cover-placeholder text-center">
+                  <span class="text-xs tracking-widest text-sky-300 uppercase font-black">Anime Short Film</span>
+                  <h4 class="text-3xl font-extrabold tracking-widest text-white mt-1">鸣 夏</h4>
+                  <p class="text-xs text-sky-200/80 mt-1">青空草原 · 治愈系短片</p>
+                </div>
+                <div class="play-overlay absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" onclick="openPlayModal('夏鸣 (鸣夏)', 'work-3')">
+                  <span class="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+                    <i data-lucide="play" class="w-7 h-7 fill-current"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div class="mt-4 flex items-center justify-between">
+                <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">夏鸣 (鸣夏)</h3>
+                <span class="text-xs px-3 py-1 rounded-full bg-white/10 font-mono text-emerald-400 font-semibold">AI动漫短片</span>
+              </div>
+              <p class="text-xs text-white/70 mt-2 line-clamp-2">日系唯美画风，全流程负责场景抽卡、镜头景深调度、情绪原声配合与诗意剪辑。</p>
+            </div>
+
+            <div class="mt-4 pt-3 flex items-center justify-between text-xs">
+              <span class="video-status text-xs text-white/50 font-mono">未绑定本地源</span>
+              <label class="cursor-pointer inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors">
+                <i data-lucide="upload" class="w-4 h-4 text-cyan-300"></i>
+                <span>上传视频</span>
+                <input type="file" accept="video/*" class="hidden" onchange="handleWorkVideoUpload(event, 'work-3', '夏鸣 (鸣夏)')">
+              </label>
+            </div>
+          </div>
+
+          <!-- 作品 4：哈啤 MV广告 -->
+          <div class="work-card liquid-glass-borderless rounded-3xl p-5 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300" data-category="ad" data-id="work-4">
+            <div>
+              <div class="video-container relative aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-blue-950/90 to-neutral-900 flex flex-col items-center justify-center p-4 text-center">
+                <div class="cover-placeholder text-center">
+                  <span class="text-xs tracking-widest text-blue-300 uppercase font-black">Trendy Music Video</span>
+                  <h4 class="text-2xl font-extrabold text-white mt-1">冰极畅饮 · 0负担</h4>
+                  <p class="text-xs text-blue-200/80 mt-1">哈啤品牌潮漫广告片</p>
+                </div>
+                <div class="play-overlay absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" onclick="openPlayModal('哈啤 - 好运0负担MV广告', 'work-4')">
+                  <span class="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+                    <i data-lucide="play" class="w-7 h-7 fill-current"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div class="mt-4 flex items-center justify-between">
+                <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">哈啤 - 好运0负担MV广告</h3>
+                <span class="text-xs px-3 py-1 rounded-full bg-white/10 font-mono text-cyan-300 font-semibold">AI广告片</span>
+              </div>
+              <p class="text-xs text-white/70 mt-2 line-clamp-2">年轻潮酷风格，三维质感与潮漫交互抽卡，BGM强节拍卡点剪辑输出。</p>
+            </div>
+
+            <div class="mt-4 pt-3 flex items-center justify-between text-xs">
+              <span class="video-status text-xs text-white/50 font-mono">未绑定本地源</span>
+              <label class="cursor-pointer inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors">
+                <i data-lucide="upload" class="w-4 h-4 text-cyan-300"></i>
+                <span>上传视频</span>
+                <input type="file" accept="video/*" class="hidden" onchange="handleWorkVideoUpload(event, 'work-4', '哈啤 - 好运0负担MV广告')">
+              </label>
+            </div>
+          </div>
+
+          <!-- 作品 5：被遗忘的起点 -->
+          <div class="work-card liquid-glass-borderless rounded-3xl p-5 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300" data-category="anime" data-id="work-5">
+            <div>
+              <div class="video-container relative aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-amber-950 via-orange-950 to-neutral-900 flex flex-col items-center justify-center p-4 text-center">
+                <div class="cover-placeholder text-center">
+                  <span class="text-xs tracking-widest text-amber-300 uppercase font-black">Anime Short Film</span>
+                  <h4 class="text-2xl font-extrabold tracking-wider text-white mt-1">被遗忘的起点</h4>
+                  <p class="text-xs text-amber-200/80 mt-1">奇幻暖愈原创漫剧</p>
+                </div>
+                <div class="play-overlay absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" onclick="openPlayModal('被遗忘的起点', 'work-5')">
+                  <span class="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+                    <i data-lucide="play" class="w-7 h-7 fill-current"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div class="mt-4 flex items-center justify-between">
+                <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">被遗忘的起点</h3>
+                <span class="text-xs px-3 py-1 rounded-full bg-white/10 font-mono text-emerald-400 font-semibold">AI动漫短片</span>
+              </div>
+              <p class="text-xs text-white/70 mt-2 line-clamp-2">主角角色主体一致性深度控制，打造夕阳麦田与奇幻生灵的温馨相遇全篇。</p>
+            </div>
+
+            <div class="mt-4 pt-3 flex items-center justify-between text-xs">
+              <span class="video-status text-xs text-white/50 font-mono">未绑定本地源</span>
+              <label class="cursor-pointer inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors">
+                <i data-lucide="upload" class="w-4 h-4 text-cyan-300"></i>
+                <span>上传视频</span>
+                <input type="file" accept="video/*" class="hidden" onchange="handleWorkVideoUpload(event, 'work-5', '被遗忘的起点')">
+              </label>
+            </div>
+          </div>
+
+          <!-- 作品 6：喜之郎 -->
+          <div class="work-card liquid-glass-borderless rounded-3xl p-5 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300" data-category="ad" data-id="work-6">
+            <div>
+              <div class="video-container relative aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-red-950/90 to-neutral-950 flex flex-col items-center justify-center p-4 text-center">
+                <div class="cover-placeholder text-center">
+                  <span class="text-xs tracking-widest text-rose-400 uppercase font-black">Epic Brand Ad</span>
+                  <h4 class="text-2xl font-extrabold text-rose-500 font-serif mt-1">何为中华好儿郎？</h4>
+                  <p class="text-xs text-white/70 mt-1">喜之郎国潮概念广告片</p>
+                </div>
+                <div class="play-overlay absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" onclick="openPlayModal('喜之郎 - 何为中华好儿郎', 'work-6')">
+                  <span class="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+                    <i data-lucide="play" class="w-7 h-7 fill-current"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div class="mt-4 flex items-center justify-between">
+                <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">喜之郎 - 何为中华好儿郎</h3>
+                <span class="text-xs px-3 py-1 rounded-full bg-white/10 font-mono text-cyan-300 font-semibold">AI广告片</span>
+              </div>
+              <p class="text-xs text-white/70 mt-2 line-clamp-2">史诗级磅礴光影抽卡、传统国风元素与现代镜头动效结合，打造强烈情感共鸣。</p>
+            </div>
+
+            <div class="mt-4 pt-3 flex items-center justify-between text-xs">
+              <span class="video-status text-xs text-white/50 font-mono">未绑定本地源</span>
+              <label class="cursor-pointer inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors">
+                <i data-lucide="upload" class="w-4 h-4 text-cyan-300"></i>
+                <span>上传视频</span>
+                <input type="file" accept="video/*" class="hidden" onchange="handleWorkVideoUpload(event, 'work-6', '喜之郎 - 何为中华好儿郎')">
+              </label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PAGE 3: 全流程制作管线 (大排版) ========== -->
+    <section class="page-slide px-10">
+      <div class="max-w-[1760px] mx-auto w-full pt-16">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-5">
+            <div class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-cyan-300 mb-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+              <span>AIGC Pipeline & Skills</span>
+            </div>
+
+            <h2 class="text-4xl sm:text-5xl font-black tracking-tight leading-tight text-white drop-shadow-md">
+              全流程独立创作<br>
+              <span class="text-white/50">工业化生成式管线.</span>
+            </h2>
+
+            <p class="mt-6 text-white/80 text-xl leading-relaxed max-w-xl">
+              打破传统动画周期冗长限制。一人贯穿“剧本立意 → 人物种子锁定 → 场景渲染 → 镜头运动 → 配音剪辑”全流程，保证高产出的同时严控视觉质感。
+            </p>
+
+            <div class="mt-8">
+              <span class="text-xs uppercase tracking-widest text-white/60 font-mono block mb-4">掌握核心工具生态</span>
+              <div class="flex flex-wrap gap-3 text-sm">
+                <span class="px-5 py-2.5 rounded-2xl liquid-glass-borderless text-white font-semibold">Midjourney</span>
+                <span class="px-5 py-2.5 rounded-2xl liquid-glass-borderless text-white font-semibold">即梦 Jimeng AI</span>
+                <span class="px-5 py-2.5 rounded-2xl liquid-glass-borderless text-white font-semibold">剪映专业版</span>
+                <span class="px-5 py-2.5 rounded-2xl liquid-glass-borderless text-white font-semibold">Nano Banana</span>
+                <span class="px-5 py-2.5 rounded-2xl liquid-glass-borderless text-white font-semibold">ChatGPT / GPTs</span>
+                <span class="px-5 py-2.5 rounded-2xl liquid-glass-borderless text-white font-semibold">豆包</span>
+                <span class="px-5 py-2.5 rounded-2xl liquid-glass-borderless text-white font-semibold">AI Studio</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6步工作流模块 (两列排布) -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="liquid-glass-borderless rounded-2xl p-5">
+              <div class="flex items-center justify-between text-base font-bold text-white">
+                <span class="text-lg">01. 剧本创作与Prompt</span>
+                <span class="text-cyan-300 font-mono text-xs">ChatGPT</span>
+              </div>
+              <p class="text-sm text-white/70 mt-2 leading-relaxed">故事节奏把控、戏剧冲突设定、结构化分镜关键词输出与情绪曲线规划。</p>
+            </div>
+
+            <div class="liquid-glass-borderless rounded-2xl p-5">
+              <div class="flex items-center justify-between text-base font-bold text-white">
+                <span class="text-lg">02. 人物一致性抽卡</span>
+                <span class="text-cyan-300 font-mono text-xs">Midjourney</span>
+              </div>
+              <p class="text-sm text-white/70 mt-2 leading-relaxed">角色多视角定装、种子绑定、面部情绪与服饰细节精确锁定。</p>
+            </div>
+
+            <div class="liquid-glass-borderless rounded-2xl p-5">
+              <div class="flex items-center justify-between text-base font-bold text-white">
+                <span class="text-lg">03. 场景空间与光影</span>
+                <span class="text-cyan-300 font-mono text-xs">MJ / SD</span>
+              </div>
+              <p class="text-sm text-white/70 mt-2 leading-relaxed">统一视觉世界观，日漫/国风/写实光影深度营造电影级氛围。</p>
+            </div>
+
+            <div class="liquid-glass-borderless rounded-2xl p-5">
+              <div class="flex items-center justify-between text-base font-bold text-white">
+                <span class="text-lg">04. 镜头脚本分镜规划</span>
+                <span class="text-cyan-300 font-mono text-xs">Storyboard</span>
+              </div>
+              <p class="text-sm text-white/70 mt-2 leading-relaxed">特写、全景、推拉摇移运镜轨迹规划，奠定镜头视听节奏。</p>
+            </div>
+
+            <div class="liquid-glass-borderless rounded-2xl p-5">
+              <div class="flex items-center justify-between text-base font-bold text-white">
+                <span class="text-lg">05. 动态视频生成</span>
+                <span class="text-cyan-300 font-mono text-xs">即梦 AI</span>
+              </div>
+              <p class="text-sm text-white/70 mt-2 leading-relaxed">图生视频动力学调校，镜头流畅度把控，去除畸变与失真。</p>
+            </div>
+
+            <div class="liquid-glass-borderless rounded-2xl p-5">
+              <div class="flex items-center justify-between text-base font-bold text-white">
+                <span class="text-lg">06. 配音/音乐/剪辑</span>
+                <span class="text-cyan-300 font-mono text-xs">剪映 Pro</span>
+              </div>
+              <p class="text-sm text-white/70 mt-2 leading-relaxed">配音情感音调调配、节拍卡点、环境声效与 4K 色彩管理。</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PAGE 4: 实战经历与教育背景 ========== -->
+    <section class="page-slide px-10">
+      <div class="max-w-[1760px] mx-auto w-full pt-16">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- 工作经历 (col-span-7) -->
+          <div class="lg:col-span-7">
+            <div class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-white/60 mb-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
+              <span>Career History</span>
+            </div>
+            <h2 class="text-4xl sm:text-5xl font-black tracking-tight text-white drop-shadow-md mb-6">工作经历</h2>
+
+            <div class="liquid-glass-borderless rounded-3xl p-8">
+              <div class="flex flex-wrap items-center justify-between gap-4 pb-4">
+                <div>
+                  <h3 class="text-2xl font-black text-white">广州鲸海拾贝新技术有限公司</h3>
+                  <p class="text-base text-cyan-300 font-semibold mt-1">AI 漫剧课程顾问</p>
+                </div>
+                <span class="px-5 py-1.5 rounded-full bg-white/10 text-sm font-mono text-white/90">
+                  2026.03 - 2026.05
+                </span>
+              </div>
+
+              <div class="mt-4 space-y-3.5 text-base text-white/85 leading-relaxed">
+                <p>• <strong>渠道引流与转化：</strong>负责承接 B 站付费渠道流量，通过公开课内容引导精准挖掘意向学员需求，高效推进咨询与转化。</p>
+                <p>• <strong>专业课程解析：</strong>依托自身 AI 动漫全流程制作技术背景，向学员深入拆解 AI 漫剧工具链及服务体系。</p>
+                <p>• <strong>私域分层管理：</strong>建立精细化学员标签体系，深度跟进维护学员关系，有效提升私域报名转化率，达成既定销售目标。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 学历与复合素养 (col-span-5) -->
+          <div class="lg:col-span-5">
+            <div class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-white/60 mb-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
+              <span>Education & Profile</span>
+            </div>
+            <h2 class="text-4xl sm:text-5xl font-black tracking-tight text-white drop-shadow-md mb-6">教育背景</h2>
+
+            <div class="liquid-glass-borderless rounded-3xl p-8 space-y-6">
+              <div>
+                <span class="text-xs font-mono text-white/60 uppercase tracking-widest block">Higher Education</span>
+                <h4 class="text-2xl font-black text-white mt-2">工商学院</h4>
+                <p class="text-base text-white/80 mt-1">大专 · 电子商务专业 (2019 - 2022)</p>
+              </div>
+
+              <div class="pt-4 text-base text-white/80 leading-relaxed">
+                兼具<strong>电子商务转化与营销思维</strong>和<strong>前沿 AIGC 影视美学</strong>复合优势。不仅能够高质量呈现唯美镜头，更懂得如何通过视觉调性契合商业受众偏好。
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PAGE 5: 联络合作与页脚 ========== -->
+    <section class="page-slide px-10 text-center items-center justify-between py-16">
+      <div class="w-full"></div>
+
+      <!-- 中心联络卡片 (无任何白线) -->
+      <div class="liquid-glass-borderless rounded-[2.5rem] px-16 py-20 text-center max-w-5xl mx-auto w-full shadow-2xl">
+        <h2 class="text-4xl md:text-6xl font-black tracking-tight leading-tight text-white drop-shadow-xl">
+          期待与优秀的团队携手<br>
+          <span class="text-white/60">创造震撼人心的 AI 影视视界</span>
+        </h2>
+
+        <div class="mt-12 flex flex-wrap items-center justify-center gap-6">
+          <a href="tel:17352693115" class="group inline-flex items-center justify-center gap-3 rounded-full bg-white text-black font-black text-base px-10 py-5 transition-all hover:bg-white/90 active:scale-[0.98] shadow-2xl">
+            <i data-lucide="phone-call" class="w-5 h-5"></i>
+            <span>拨打电话 17352693115</span>
+            <i data-lucide="chevron-right" class="w-5 h-5 transition-transform group-hover:translate-x-1.5"></i>
+          </a>
+
+          <button onclick="copyMail()" class="rounded-full bg-white/10 text-white text-base font-bold px-10 py-5 hover:bg-white/20 transition-all inline-flex items-center gap-3 shadow-lg cursor-pointer">
+            <i data-lucide="copy" class="w-5 h-5 text-white/80"></i>
+            <span>复制邮箱 3117043965@qq.com</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 底部版权信息 (无横线) -->
+      <footer class="max-w-[1760px] mx-auto w-full flex flex-col sm:flex-row items-center justify-between text-sm text-white/50 px-6 pt-10">
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-white drop-shadow" viewBox="0 0 256 256" fill="currentColor">
+            <path d="M 0 128 C 70.692 128 128 185.308 128 256 L 64 256 C 64 220.654 35.346 192 0 192 Z M 256 192 C 220.654 192 192 220.654 192 256 L 128 256 C 128 185.308 185.308 128 256 128 Z M 128 0 C 128 70.692 70.692 128 0 128 L 0 64 C 35.346 64 64 35.346 64 0 Z M 192 0 C 192 35.346 220.654 64 256 64 L 256 128 C 185.308 128 128 70.692 128 0 Z" />
+          </svg>
+          <span>© 2026 李粤湘 · 个人作品集简历. All Rights Reserved.</span>
+        </div>
+        <div class="flex items-center gap-6 font-mono text-xs">
+          <span>AIGC Filmmaker Portfolio</span>
+          <span>Single-Wheel Page Scroll System</span>
+        </div>
+      </footer>
+    </section>
+
+  </div>
+
+  <!-- ==================== 5. 视频全屏播放器模态框 ==================== -->
+  <div id="videoModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden items-center justify-center p-8">
+    <div class="liquid-glass-borderless rounded-[2rem] max-w-6xl w-full p-8 relative shadow-2xl">
+      <div class="flex items-center justify-between pb-6">
+        <div>
+          <span class="text-xs text-cyan-300 uppercase tracking-widest font-mono">Master Video Preview</span>
+          <h3 id="modalVideoTitle" class="text-2xl font-black text-white mt-1">作品预览</h3>
+        </div>
+        <button onclick="closePlayModal()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors cursor-pointer">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <div class="mt-4 aspect-video rounded-2xl overflow-hidden bg-black flex items-center justify-center relative shadow-inner">
+        <video id="modalVideoElement" controls autoplay loop class="w-full h-full object-contain hidden"></video>
+        <div id="modalNoVideoPrompt" class="text-center p-8 text-white/70 space-y-3">
+          <i data-lucide="film" class="w-16 h-16 mx-auto text-white/40"></i>
+          <p class="text-xl font-bold">当前作品尚未上传本地视频</p>
+          <p class="text-base text-white/50">点击卡片下方的“上传视频”选择本地视频，系统将自动永久保存。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 6. 添加新作品模态框 ==================== -->
+  <div id="newWorkModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden items-center justify-center p-8">
+    <div class="liquid-glass-borderless rounded-[2rem] max-w-xl w-full p-8 relative shadow-2xl">
+      <div class="flex items-center justify-between pb-6">
+        <h3 class="text-xl font-black text-white">上传并添加新影视作品</h3>
+        <button onclick="closeNewWorkModal()" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white cursor-pointer">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form onsubmit="handleCreateNewWork(event)" class="mt-4 space-y-5 text-sm">
+        <div>
+          <label class="block text-white/70 mb-2 font-semibold">作品名称</label>
+          <input type="text" id="newWorkTitle" required placeholder="例如：品牌概念宣传片" class="w-full px-4 py-3 rounded-xl bg-black/50 text-white focus:outline-none focus:ring-1 focus:ring-cyan-400 text-base">
+        </div>
+
+        <div>
+          <label class="block text-white/70 mb-2 font-semibold">作品分类</label>
+          <select id="newWorkCategory" class="w-full px-4 py-3 rounded-xl bg-[#141414] text-white focus:outline-none focus:ring-1 focus:ring-cyan-400 text-base">
+            <option value="ad">AI 广告片</option>
+            <option value="anime">AI 动漫短片</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-white/70 mb-2 font-semibold">作品简介与制作亮点</label>
+          <textarea id="newWorkDesc" required rows="3" placeholder="简述抽卡工具与分镜手法..." class="w-full px-4 py-3 rounded-xl bg-black/50 text-white focus:outline-none focus:ring-1 focus:ring-cyan-400 text-base"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-white/70 mb-2 font-semibold">选择对应视频文件 (.mp4/.mov)</label>
+          <input type="file" id="newWorkVideoFile" accept="video/*" class="w-full text-white/60 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-white/20 file:text-white hover:file:bg-white/30 cursor-pointer">
+        </div>
+
+        <div class="pt-4 flex justify-end gap-3">
+          <button type="button" onclick="closeNewWorkModal()" class="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold cursor-pointer">取消</button>
+          <button type="submit" class="px-8 py-3 rounded-xl bg-cyan-400 text-black font-black hover:bg-cyan-300 cursor-pointer">保存并展示</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== 7. 单滚轮整页切屏与持久化脚本 ==================== -->
+  <script>
+    lucide.createIcons();
+
+    // ==================== A. 一个鼠标滑轮进入下一页控制器 ====================
+    let currentPage = 0;
+    const totalPages = 5;
+    let isWheeling = false;
+    let isModalOpen = false;
+
+    function goToPage(index) {
+      if (index < 0 || index >= totalPages) return;
+      currentPage = index;
+
+      const slider = document.getElementById('page-slider');
+      slider.style.transform = `translateY(-${currentPage * 100}vh)`;
+
+      // 更新右侧指示点状态
+      const dots = document.querySelectorAll('.nav-dot');
+      dots.forEach((dot, idx) => {
+        if (idx === currentPage) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    // 核心滑轮监听：一个滑轮动作切换一页并设置防抖冷却
+    window.addEventListener('wheel', (e) => {
+      if (isModalOpen) return; // 弹窗开启时不切屏
+      if (isWheeling) return;
+
+      const delta = e.deltaY;
+      if (Math.abs(delta) > 20) {
+        isWheeling = true;
+        if (delta > 0) {
+          goToPage(currentPage + 1);
+        } else {
+          goToPage(currentPage - 1);
+        }
+        // 800ms 防抖锁定，保证每次滑轮只推进一屏
+        setTimeout(() => {
+          isWheeling = false;
+        }, 800);
+      }
+    }, { passive: true });
+
+    // 键盘支持
+    window.addEventListener('keydown', (e) => {
+      if (isModalOpen) return;
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+        goToPage(currentPage + 1);
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        goToPage(currentPage - 1);
+      }
+    });
+
+    // ==================== B. IndexedDB 视频永久保存核心 ====================
+    const DB_NAME = 'LiYueXiang_AIGC_Portfolio_DB';
+    const DB_VERSION = 1;
+    const STORE_WORKS = 'portfolio_works';
+    const STORE_SETTINGS = 'portfolio_settings';
+
+    function openDatabase() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(DB_NAME, DB_VERSION);
+        req.onupgradeneeded = (e) => {
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains(STORE_WORKS)) {
+            db.createObjectStore(STORE_WORKS, { keyPath: 'id' });
+          }
+          if (!db.objectStoreNames.contains(STORE_SETTINGS)) {
+            db.createObjectStore(STORE_SETTINGS, { keyPath: 'key' });
+          }
+        };
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function dbSaveWorkVideo(id, file, title, category, desc, isCustom = false) {
+      const db = await openDatabase();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(STORE_WORKS, 'readwrite');
+        const store = tx.objectStore(STORE_WORKS);
+        store.put({
+          id,
+          file,
+          title,
+          category: category || 'ad',
+          desc: desc || '',
+          fileName: file.name,
+          isCustom,
+          updatedAt: Date.now()
+        });
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+      });
+    }
+
+    async function dbGetAllWorks() {
+      const db = await openDatabase();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(STORE_WORKS, 'readonly');
+        const store = tx.objectStore(STORE_WORKS);
+        const req = store.getAll();
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function dbSaveSetting(key, value) {
+      const db = await openDatabase();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(STORE_SETTINGS, 'readwrite');
+        const store = tx.objectStore(STORE_SETTINGS);
+        store.put({ key, value, updatedAt: Date.now() });
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+      });
+    }
+
+    async function dbGetSetting(key) {
+      const db = await openDatabase();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(STORE_SETTINGS, 'readonly');
+        const store = tx.objectStore(STORE_SETTINGS);
+        const req = store.get(key);
+        req.onsuccess = () => resolve(req.result ? req.result.value : null);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    const activeVideoMap = {};
+
+    // 页面启动时自动还原
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const bgVideoFile = await dbGetSetting('bg_video');
+        if (bgVideoFile) {
+          const bgVideoEl = document.getElementById('globalBgVideo');
+          bgVideoEl.src = URL.createObjectURL(bgVideoFile);
+          document.getElementById('bgStatusText').innerText = '自定义背景已生效';
+        }
+      } catch (err) {
+        console.warn('背景视频读取失败:', err);
+      }
+
+      try {
+        const savedWorks = await dbGetAllWorks();
+        savedWorks.forEach(work => {
+          const videoUrl = URL.createObjectURL(work.file);
+          activeVideoMap[work.id] = {
+            url: videoUrl,
+            title: work.title,
+            name: work.fileName
+          };
+
+          const card = document.querySelector(`[data-id="${work.id}"]`);
+          if (card) {
+            applyVideoToCard(card, work.id, work.title, videoUrl, work.fileName);
+          } else if (work.isCustom) {
+            renderCustomCard(work.id, work.title, work.category, work.desc, videoUrl, work.fileName);
+          }
+        });
+      } catch (err) {
+        console.warn('作品还原失败:', err);
+      }
+    });
+
+    function applyVideoToCard(card, workId, workTitle, videoUrl, fileName) {
+      const statusLabel = card.querySelector('.video-status');
+      if (statusLabel) {
+        const shortName = fileName.length > 8 ? fileName.substring(0, 8) + '...' : fileName;
+        statusLabel.innerText = '已保存: ' + shortName;
+        statusLabel.classList.add('text-cyan-300');
+      }
+
+      const container = card.querySelector('.video-container');
+      container.innerHTML = `
+        <video src="${videoUrl}" controls autoplay loop muted playsinline class="w-full h-full object-cover rounded-2xl"></video>
+        <button onclick="openPlayModal('${workTitle}', '${workId}')" class="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-3 py-1 rounded-lg text-xs text-white hover:bg-black flex items-center gap-1 z-10 transition-colors cursor-pointer">
+          <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i> 放大
+        </button>
+      `;
+      lucide.createIcons();
+    }
+
+    // ==================== C. 上传全屏背景视频 ====================
+    async function handleBgVideoUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      await dbSaveSetting('bg_video', file);
+      const bgVideoEl = document.getElementById('globalBgVideo');
+      bgVideoEl.src = URL.createObjectURL(file);
+      document.getElementById('bgStatusText').innerText = '背景已保存';
+      alert('全屏背景视频已更换并成功永久保存！刷新依然生效。');
+    }
+
+    // ==================== D. 为现有作品上传视频 ====================
+    async function handleWorkVideoUpload(event, workId, workTitle) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      await dbSaveWorkVideo(workId, file, workTitle, 'ad', '', false);
+
+      const videoUrl = URL.createObjectURL(file);
+      activeVideoMap[workId] = {
+        url: videoUrl,
+        title: workTitle,
+        name: file.name
+      };
+
+      const card = document.querySelector(`[data-id="${workId}"]`);
+      if (card) {
+        applyVideoToCard(card, workId, workTitle, videoUrl, file.name);
+      }
+      alert(`《${workTitle}》视频已保存，刷新页面会自动加载！`);
+    }
+
+    // ==================== E. 视频弹窗全屏预览 ====================
+    function openPlayModal(title, workId) {
+      isModalOpen = true;
+      const modal = document.getElementById('videoModal');
+      const titleEl = document.getElementById('modalVideoTitle');
+      const videoEl = document.getElementById('modalVideoElement');
+      const noVideoPrompt = document.getElementById('modalNoVideoPrompt');
+
+      titleEl.innerText = title;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      if (activeVideoMap[workId] && activeVideoMap[workId].url) {
+        videoEl.src = activeVideoMap[workId].url;
+        videoEl.classList.remove('hidden');
+        noVideoPrompt.classList.add('hidden');
+        videoEl.play();
+      } else {
+        videoEl.pause();
+        videoEl.src = '';
+        videoEl.classList.add('hidden');
+        noVideoPrompt.classList.remove('hidden');
+      }
+    }
+
+    function closePlayModal() {
+      isModalOpen = false;
+      const modal = document.getElementById('videoModal');
+      const videoEl = document.getElementById('modalVideoElement');
+      videoEl.pause();
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // ==================== F. 作品分类筛选 ====================
+    function filterWorks(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('bg-white/20', 'text-white');
+        b.classList.add('text-white/70');
+      });
+      btn.classList.add('bg-white/20', 'text-white');
+      btn.classList.remove('text-white/70');
+
+      const cards = document.querySelectorAll('.work-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // ==================== G. 新增作品弹窗与存储 ====================
+    function triggerNewWorkModal() {
+      isModalOpen = true;
+      document.getElementById('newWorkModal').classList.remove('hidden');
+      document.getElementById('newWorkModal').classList.add('flex');
+    }
+
+    function closeNewWorkModal() {
+      isModalOpen = false;
+      document.getElementById('newWorkModal').classList.add('hidden');
+      document.getElementById('newWorkModal').classList.remove('flex');
+    }
+
+    async function handleCreateNewWork(e) {
+      e.preventDefault();
+      const title = document.getElementById('newWorkTitle').value;
+      const category = document.getElementById('newWorkCategory').value;
+      const desc = document.getElementById('newWorkDesc').value;
+      const fileInput = document.getElementById('newWorkVideoFile');
+      const file = fileInput.files[0];
+      const newId = 'work-custom-' + Date.now();
+
+      let videoUrl = '';
+      let fileName = '';
+
+      if (file) {
+        await dbSaveWorkVideo(newId, file, title, category, desc, true);
+        videoUrl = URL.createObjectURL(file);
+        fileName = file.name;
+        activeVideoMap[newId] = { url: videoUrl, title, name: fileName };
+      }
+
+      renderCustomCard(newId, title, category, desc, videoUrl, fileName);
+      closeNewWorkModal();
+      alert('新作品及视频已成功存储，刷新后依然存在！');
+    }
+
+    function renderCustomCard(newId, title, category, desc, videoUrl, fileName) {
+      const grid = document.getElementById('works-grid');
+      const div = document.createElement('div');
+      div.className = 'work-card liquid-glass-borderless rounded-3xl p-5 flex flex-col justify-between group hover:scale-[1.01] transition-all duration-300';
+      div.setAttribute('data-category', category);
+      div.setAttribute('data-id', newId);
+
+      const categoryLabel = category === 'ad' ? 'AI广告片' : 'AI动漫短片';
+      const categoryColor = category === 'ad' ? 'text-cyan-300' : 'text-emerald-400';
+
+      div.innerHTML = `
+        <div>
+          <div class="video-container relative aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-indigo-950 to-neutral-900 flex flex-col items-center justify-center p-4 text-center">
+            ${videoUrl ? `
+              <video src="${videoUrl}" controls autoplay loop muted playsinline class="w-full h-full object-cover rounded-2xl"></video>
+              <button onclick="openPlayModal('${title}', '${newId}')" class="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-3 py-1 rounded-lg text-xs text-white hover:bg-black flex items-center gap-1 z-10 transition-colors cursor-pointer">
+                <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i> 放大
+              </button>
+            ` : `
+              <div class="cover-placeholder text-center">
+                <span class="text-xs tracking-widest text-cyan-300 uppercase font-black">${categoryLabel}</span>
+                <h4 class="text-2xl font-extrabold text-white mt-1">${title}</h4>
+              </div>
+              <div class="play-overlay absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" onclick="openPlayModal('${title}', '${newId}')">
+                <span class="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-2xl">
+                  <i data-lucide="play" class="w-7 h-7 fill-current"></i>
+                </span>
+              </div>
+            `}
+          </div>
+
+          <div class="mt-4 flex items-center justify-between">
+            <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">${title}</h3>
+            <span class="text-xs px-3 py-1 rounded-full bg-white/10 font-mono ${categoryColor} font-semibold">${categoryLabel}</span>
+          </div>
+          <p class="text-xs text-white/70 mt-2 line-clamp-2">${desc}</p>
+        </div>
+
+        <div class="mt-4 pt-3 flex items-center justify-between text-xs">
+          <span class="video-status text-xs ${videoUrl ? 'text-cyan-300' : 'text-white/50'} font-mono">${videoUrl ? '已保存: ' + (fileName.length > 8 ? fileName.substring(0, 8) + '...' : fileName) : '未绑定本地源'}</span>
+          <label class="cursor-pointer inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition-colors">
+            <i data-lucide="upload" class="w-4 h-4 text-cyan-300"></i>
+            <span>重新上传</span>
+            <input type="file" accept="video/*" class="hidden" onchange="handleWorkVideoUpload(event, '${newId}', '${title}')">
+          </label>
+        </div>
+      `;
+
+      grid.prepend(div);
+      lucide.createIcons();
+    }
+
+    // ==================== H. 复制邮箱 ====================
+    function copyMail() {
+      navigator.clipboard.writeText('3117043965@qq.com').then(() => {
+        alert('邮箱地址已复制到剪贴板：3117043965@qq.com');
+      });
+    }
+  </script>
+</body>
+</html>
